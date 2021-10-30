@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.mapper.OcCurrentDayRevenueDao">
+
+<!--    <resultMap type="com.shop.entity.OcCurrentDayRevenue" id="OcCurrentDayRevenueMap">-->
+<!--        <result property="id" column="id" jdbcType="INTEGER"/>-->
+<!--        <result property="revenue" column="revenue" jdbcType="INTEGER"/>-->
+<!--        <result property="expenditure" column="expenditure" jdbcType="INTEGER"/>-->
+<!--        <result property="netRevenue" column="net_revenue" jdbcType="INTEGER"/>-->
+<!--        <result property="date" column="date" jdbcType="INTEGER"/>-->
+<!--    </resultMap>-->
+
+<!--    &lt;!&ndash;查询单个&ndash;&gt;-->
+<!--    <select id="queryById" resultMap="OcCurrentDayRevenueMap">-->
+<!--        select id,-->
+<!--               revenue,-->
+<!--               expenditure,-->
+<!--               net_revenue, date-->
+<!--        from shop.oc_current_day_revenue-->
+<!--        where id = #{id}-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash;查询指定行数据&ndash;&gt;-->
+<!--    <select id="queryAllByLimit" resultMap="OcCurrentDayRevenueMap">-->
+<!--        select id,-->
+<!--               revenue,-->
+<!--               expenditure,-->
+<!--               net_revenue, date-->
+<!--        from shop.oc_current_day_revenue-->
+<!--            limit #{offset}, #{limit}-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash;通过实体作为筛选条件查询&ndash;&gt;-->
+<!--    <select id="queryAll" resultMap="OcCurrentDayRevenueMap">-->
+<!--        select-->
+<!--        id, revenue, expenditure, net_revenue, date-->
+<!--        from shop.oc_current_day_revenue-->
+<!--        <where>-->
+<!--            <if test="id != null">-->
+<!--                and id = #{id}-->
+<!--            </if>-->
+<!--            <if test="revenue != null">-->
+<!--                and revenue = #{revenue}-->
+<!--            </if>-->
+<!--            <if test="expenditure != null">-->
+<!--                and expenditure = #{expenditure}-->
+<!--            </if>-->
+<!--            <if test="netRevenue != null">-->
+<!--                and net_revenue = #{netRevenue}-->
+<!--            </if>-->
+<!--            <if test="date != null">-->
+<!--                and date = #{date}-->
+<!--            </if>-->
+<!--        </where>-->
+<!--    </select>-->
+
+<!--    &lt;!&ndash;新增所有列&ndash;&gt;-->
+<!--    <insert id="insert" keyProperty="id" useGeneratedKeys="true">-->
+<!--        insert into shop.oc_current_day_revenue(revenue, expenditure, net_revenue, date)-->
+<!--        values (#{revenue}, #{expenditure}, #{netRevenue}, #{date})-->
+<!--    </insert>-->
+
+<!--    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">-->
+<!--        insert into shop.oc_current_day_revenue(revenue, expenditure, net_revenue, date)-->
+<!--        values-->
+<!--        <foreach collection="entities" item="entity" separator=",">-->
+<!--            (#{entity.revenue}, #{entity.expenditure}, #{entity.netRevenue}, #{entity.date})-->
+<!--        </foreach>-->
+<!--    </insert>-->
+
+<!--    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">-->
+<!--        insert into shop.oc_current_day_revenue(revenue, expenditure, net_revenue, date)-->
+<!--        values-->
+<!--        <foreach collection="entities" item="entity" separator=",">-->
+<!--            (#{entity.revenue}, #{entity.expenditure}, #{entity.netRevenue}, #{entity.date})-->
+<!--        </foreach>-->
+<!--        on duplicate key update-->
+<!--        revenue = values(revenue) , expenditure = values(expenditure) , net_revenue = values(net_revenue) , date =-->
+<!--        values(date)-->
+<!--    </insert>-->
+
+<!--    &lt;!&ndash;通过主键修改数据&ndash;&gt;-->
+<!--    <update id="update">-->
+<!--        update shop.oc_current_day_revenue-->
+<!--        <set>-->
+<!--            <if test="revenue != null">-->
+<!--                revenue = #{revenue},-->
+<!--            </if>-->
+<!--            <if test="expenditure != null">-->
+<!--                expenditure = #{expenditure},-->
+<!--            </if>-->
+<!--            <if test="netRevenue != null">-->
+<!--                net_revenue = #{netRevenue},-->
+<!--            </if>-->
+<!--            <if test="date != null">-->
+<!--                date = #{date},-->
+<!--            </if>-->
+<!--        </set>-->
+<!--        where id = #{id}-->
+<!--    </update>-->
+
+<!--    &lt;!&ndash;通过主键删除&ndash;&gt;-->
+<!--    <delete id="deleteById">-->
+<!--        delete-->
+<!--        from shop.oc_current_day_revenue-->
+<!--        where id = #{id}-->
+<!--    </delete>-->
+
+</mapper>
+
