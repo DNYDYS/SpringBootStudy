@@ -15,21 +15,18 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.TransactionDefinition;
-import org.springframework.transaction.TransactionStatus;
 
 @Service
 public class OcPolylineServiceImpl implements OcPolylineService {
 
     private Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 
-    @Autowired
-    DataSourceTransactionManager dataSourceTransactionManager;
+//    @Autowired
+//    DataSourceTransactionManager dataSourceTransactionManager;
 
-    @Autowired
-    private TransactionDefinition transactionDefinition;
+//    @Autowired
+//    private TransactionDefinition transactionDefinition;
 
     @Autowired
     private OcPolylineDataMapper polylineDataMapper;
@@ -72,7 +69,7 @@ public class OcPolylineServiceImpl implements OcPolylineService {
     public Map insertPolyLineType(String polylineName, String polylineType) {
         Map map = new HashMap();
         float money = 0;
-        TransactionStatus transactionStatus = dataSourceTransactionManager.getTransaction(transactionDefinition);
+//        TransactionStatus transactionStatus = dataSourceTransactionManager.getTransaction(transactionDefinition);
         Integer idByNameType = polylineDataMapper.getIdByNameType(polylineName);
         if (idByNameType == null){
             polylineDataMapper.insertPolyLineType(polylineName,polylineType);
@@ -82,7 +79,7 @@ public class OcPolylineServiceImpl implements OcPolylineService {
             for (Date date:allDate) {
                 ocCurrentDayRevenueDao.insertMoney(money,idByNameType,date);
             }
-            dataSourceTransactionManager.commit(transactionStatus);
+//            dataSourceTransactionManager.commit(transactionStatus);
             map.put("polylineDataList",ocPolylineDataList);
             map.put("Code", 200);
             map.put("Desc", "成功");

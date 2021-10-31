@@ -1,22 +1,19 @@
 package com.shop.controller;
 
-import com.shop.entity.OcCurrentDayRevenue;
 import com.shop.service.OcCurrentDayRevenueService;
 import com.shop.service.impl.UserServiceImpl;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
-import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * (OcCurrentDayRevenue)表控制层
@@ -34,14 +31,14 @@ public class OcCurrentDayRevenueController {
     @Autowired
     private OcCurrentDayRevenueService ocCurrentDayRevenueService;
 
-    @GetMapping("/getAll")
+    @PostMapping("/getAll")
     @ResponseBody
     public Map getAll(){
         Map map = ocCurrentDayRevenueService.getAll();
         return map;
     }
 
-    @GetMapping("/getMoneyBypolylineId")
+    @PostMapping("/getMoneyBypolylineId")
     @ResponseBody
     public Map getMoneyBypolylineId(int polylineId){
         Map map = ocCurrentDayRevenueService.getMoneyBypolylineId(polylineId);

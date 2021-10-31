@@ -1,11 +1,14 @@
 package com.shop.mapper;
 
+import com.shop.config.DS;
 import com.shop.entity.OcCurrentDayRevenue;
-import org.apache.ibatis.annotations.*;
-import org.springframework.stereotype.Repository;
-
 import java.util.Date;
 import java.util.List;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 /**
  * (OcCurrentDayRevenue)表数据库访问层
@@ -16,30 +19,39 @@ import java.util.List;
 @Mapper
 public interface OcCurrentDayRevenueDao {
 
+    @DS("db1")
     @Select("SELECT * from oc_current_day_revenue where polylineId=#{polylineId} GROUP BY date ")
     List<OcCurrentDayRevenue> getAllDataByTypeId(@Param("polylineId") int polylineId);
 
+    @DS("db1")
     @Select("SELECT DISTINCT date FROM oc_current_day_revenue;")
     List<Date> getAllDate();
 
+    @DS("db1")
     @Insert("INSERT INTO oc_current_day_revenue (money,polylineId,date) VALUES (#{money},#{polylineId},#{date})")
     int insertMoney(@Param("money") float money,@Param("polylineId") Integer polylineId,@Param("date") Date date);
 
+    @DS("db1")
     @Update("UPDATE oc_current_day_revenue SET money = #{money} where date = #{date} and polylineId =#{polylineId}")
     int updateMoney(@Param("money") float money,@Param("polylineId") Integer polylineId,@Param("date") Date date);
 
+    @DS("db1")
     @Insert("INSERT INTO oc_current_day_revenue (expenditure,date) VALUES (#{expenditure},#{date})")
     int insertExpenditure(@Param("expenditure") int expenditure,@Param("date") Date date);
 
+    @DS("db1")
     @Update("UPDATE oc_current_day_revenue SET expenditure = #{expenditure} where date = #{date}")
     int updateExpenditure(@Param("expenditure") int expenditure,@Param("date") Date date);
 
+    @DS("db1")
     @Select("SELECT count(*) from oc_current_day_revenue where polylineId=#{polylineId} and date = #{date}")
     int selectCountByDate(@Param("polylineId") Integer polylineId,@Param("date") Date date);
 
+    @DS("db1")
     @Select("SELECT * from oc_current_day_revenue where date = #{date}")
     OcCurrentDayRevenue selectByDate(@Param("date") Date date);
 
+    @DS("db1")
     @Update("UPDATE oc_current_day_revenue SET netrevenue = #{netrevenue} where date = #{date}")
     int updateNetrevenue(@Param("netrevenue") int netrevenue,@Param("date") Date date);
 
