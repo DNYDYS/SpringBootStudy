@@ -28,7 +28,7 @@
     //     $.ajax({
     //         type: 'post',  //传输类型
     //         async: false,  //同步执行
-    //         url: '/web/ocCurrentDayRevenue/getAll', //web.xml中注册的Servlet的url-pattern
+    //         url: '/web/nowDayRevenue/getAll', //web.xml中注册的Servlet的url-pattern
     //         data: {},
     //         dataType: 'json', //返回数据形式为json
     //         success: function (result) {
@@ -254,7 +254,7 @@
                     $.ajax({
                         type: 'post',  //传输类型
                         async: false,  //同步执行
-                        url: '/web/ocCurrentDayRevenue/getMoneyBypolylineId', //web.xml中注册的Servlet的url-pattern
+                        url: '/web/nowDayRevenue/getMoneyBypolylineId', //web.xml中注册的Servlet的url-pattern
                         data: {
                             polylineId: polylineId
                         },
@@ -349,7 +349,7 @@
             type: "POST",//方法类型
             dataType: "json",//预期服务器返回的数据类型
             // url: "",//url
-            url: "/web/ocCurrentDayRevenue/insertOrUpdateRevenue",//url
+            url: "/web/nowDayRevenue/insertOrUpdateRevenue",//url
             data: {
                 money: money,
                 type1: type1,
@@ -405,7 +405,7 @@
             type: "POST",//方法类型
             dataType: "json",//预期服务器返回的数据类型
             url: "/web/OcPolyline/insertPolyLineType",//url
-            // url: "/web/ocCurrentDayRevenue/insertOrUpdateRevenue",//url
+            // url: "/web/nowDayRevenue/insertOrUpdateRevenue",//url
             data: {
                 polylineName: polylineName,
                 polylineType: polylineType,

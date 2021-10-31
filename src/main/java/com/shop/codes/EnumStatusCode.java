@@ -1,10 +1,10 @@
-package com.shop.util;
+package com.shop.codes;
 
-public enum CodeEnum {
+public enum EnumStatusCode {
     SUCCESS(200,"成功"),
     FAILD(400,"失败");
 
-    private CodeEnum(int Code, String Desc) {
+    private EnumStatusCode(int Code, String Desc) {
         this.key = key;
         this.name = name;
     }

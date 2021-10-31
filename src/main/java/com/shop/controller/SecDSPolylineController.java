@@ -1,7 +1,6 @@
 package com.shop.controller;
 
-import com.shop.service.OcPolylineService;
-import java.util.HashMap;
+import com.shop.service.SecDSPolylineService;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,10 +10,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/web/OcPolyline")
-public class OcPolylineController {
+public class SecDSPolylineController {
 
     @Autowired
-    private OcPolylineService polylineService;
+    private SecDSPolylineService polylineService;
 
     @PostMapping("/getAllPolyline")
     @ResponseBody

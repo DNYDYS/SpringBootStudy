@@ -1,6 +1,6 @@
 package com.shop.entity;
 
-public class UserBean {
+public class User {
     private int id;
     private String name;
     private String password;

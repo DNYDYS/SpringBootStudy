@@ -1,4 +1,4 @@
-package com.shop.util;
+package com.shop.config;
 
 import java.nio.charset.StandardCharsets;
 import org.springframework.context.annotation.Bean;

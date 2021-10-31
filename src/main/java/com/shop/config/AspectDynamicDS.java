@@ -1,5 +1,7 @@
 package com.shop.config;
 
+import com.shop.annos.DSAnno;
+import com.shop.util.GetPrivateFieldUtil;
 import java.lang.reflect.Method;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -14,19 +16,16 @@ import org.springframework.stereotype.Component;
  */
 @Aspect
 @Component
-public class DynamicDataSourceAspect {
-    private Logger logger = LoggerFactory.getLogger(DynamicDataSourceAspect.class);
+public class AspectDynamicDS {
 
-    public DynamicDataSourceAspect() {
-        int a = 1;
-    }
+    private Logger logger = LoggerFactory.getLogger(AspectDynamicDS.class);
 
-    @Before("@annotation(DS)")
+    @Before("@annotation(com.shop.annos.DSAnno)")
     public void beforeSwitchDS(JoinPoint point) {
         try {
-            Object methodInvocation = FunUtil.getPrivateField(point, "methodInvocation", point.getClass());
-            Method method = (Method) FunUtil.getPrivateField(methodInvocation, "method", methodInvocation.getClass());
-            DS annotation = method.getAnnotation(DS.class);
+            Object methodInvocation = GetPrivateFieldUtil.getPrivateField(point, "methodInvocation", point.getClass());
+            Method method = (Method) GetPrivateFieldUtil.getPrivateField(methodInvocation, "method", methodInvocation.getClass());
+            DSAnno annotation = method.getAnnotation(DSAnno.class);
             DataSourceContextHolder.setDB(annotation.value());
         } catch (Exception e) {
             e.printStackTrace();
@@ -34,7 +33,7 @@ public class DynamicDataSourceAspect {
         logger.info("当前数据源为" + DataSourceContextHolder.getDB());
     }
 
-    @After("@annotation(DS)")
+    @After("@annotation(com.shop.annos.DSAnno)")
     public void afterSwitchDS(JoinPoint point) {
         DataSourceContextHolder.clearDB();
     }

@@ -1,7 +1,6 @@
 package com.shop.entity;
 
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -10,7 +9,7 @@ import java.util.Date;
  * @author makejava
  * @since 2021-08-23 16:20:42
  */
-public class OcCurrentDayRevenue {
+public class NowDayRevenue {
 
     private int id;
 

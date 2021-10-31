@@ -1,6 +1,7 @@
 package com.shop.config;
 
 
+import com.shop.codes.DSEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,7 +14,7 @@ public class DataSourceContextHolder {
     /**
      * 默认数据源
      */
-    public static final String DEFAULT_DS = DataSourceEnum.DB1.getValue();
+    public static final String DEFAULT_DS = DSEnum.DB1.getValue();
 
     private static final ThreadLocal<String> contextHolder = new ThreadLocal<>();
 

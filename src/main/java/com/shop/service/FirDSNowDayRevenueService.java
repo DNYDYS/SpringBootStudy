@@ -1,10 +1,6 @@
 package com.shop.service;
 
-import com.shop.entity.OcCurrentDayRevenue;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -13,7 +9,7 @@ import java.util.Map;
  * @author makejava
  * @since 2021-08-23 16:20:48
  */
-public interface OcCurrentDayRevenueService {
+public interface FirDSNowDayRevenueService {
 
     //查询折线图收入数据
     Map getAll();

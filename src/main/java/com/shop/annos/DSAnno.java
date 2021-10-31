@@ -1,4 +1,4 @@
-package com.shop.config;
+package com.shop.annos;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,6 +7,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD})
-public @interface DS {
+public @interface DSAnno {
     String value() default "db1";
 }

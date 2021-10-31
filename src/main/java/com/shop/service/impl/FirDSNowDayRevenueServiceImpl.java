@@ -1,11 +1,10 @@
 package com.shop.service.impl;
 
-import com.shop.entity.OcCurrentDayRevenue;
+import com.shop.entity.NowDayRevenue;
 import com.shop.entity.OcPolylineData;
-import com.shop.mapper.OcCurrentDayRevenueDao;
-import com.shop.mapper.OcPolylineDataMapper;
-import com.shop.service.OcCurrentDayRevenueService;
-import org.apache.ibatis.annotations.Param;
+import com.shop.mapper.FirDSNowDayRevenueDao;
+import com.shop.mapper.SecDSPolylineMapper;
+import com.shop.service.FirDSNowDayRevenueService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,21 +20,21 @@ import java.util.*;
  * @since 2021-08-23 16:20:49
  */
 @Service
-public class OcCurrentDayRevenueServiceImpl implements OcCurrentDayRevenueService {
+public class FirDSNowDayRevenueServiceImpl implements FirDSNowDayRevenueService {
 
-    private Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
-
-    @Autowired
-    private OcCurrentDayRevenueDao ocCurrentDayRevenueDao;
+    private Logger log = LoggerFactory.getLogger(TidDSUserServiceImpl.class);
 
     @Autowired
-    private OcPolylineDataMapper ocPolylineDataMapper;
+    private FirDSNowDayRevenueDao firDSNowDayRevenueDao;
+
+    @Autowired
+    private SecDSPolylineMapper secDSPolylineMapper;
 
     @Override
     public Map getAll() {
         Map map = new HashMap();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        List<OcPolylineData> ocPolylineDataList = ocPolylineDataMapper.selectAllType();
+        List<OcPolylineData> ocPolylineDataList = secDSPolylineMapper.selectAllType();
         //存钱
         List<Float> money = new ArrayList<>();
         List<String> days = new ArrayList<>();
@@ -48,10 +47,10 @@ public class OcCurrentDayRevenueServiceImpl implements OcCurrentDayRevenueServic
             poleTypeNameList.add(o.getPolylineName());
             polylineTypeList.add(o.getPolylineType());
             polylineIdList.add(o.getId());
-            List<OcCurrentDayRevenue> allDataByTypeId = ocCurrentDayRevenueDao.getAllDataByTypeId(o.getId());
-            for (OcCurrentDayRevenue ocCurrentDayRevenue : allDataByTypeId) {
-                money.add(ocCurrentDayRevenue.getMoney());
-                String transformDate = simpleDateFormat.format(ocCurrentDayRevenue.getDate());
+            List<NowDayRevenue> allDataByTypeId = firDSNowDayRevenueDao.getAllDataByTypeId(o.getId());
+            for (NowDayRevenue nowDayRevenue : allDataByTypeId) {
+                money.add(nowDayRevenue.getMoney());
+                String transformDate = simpleDateFormat.format(nowDayRevenue.getDate());
                 days.add(transformDate);
             }
             map.put(o.getPolylineName(), money);
@@ -102,10 +101,10 @@ public class OcCurrentDayRevenueServiceImpl implements OcCurrentDayRevenueServic
         List<Float> money = new ArrayList<>();
         List<String> days = new ArrayList<>();
 
-        List<OcCurrentDayRevenue> allDataByTypeId = ocCurrentDayRevenueDao.getAllDataByTypeId(id);
-        for (OcCurrentDayRevenue ocCurrentDayRevenue : allDataByTypeId) {
-            money.add(ocCurrentDayRevenue.getMoney());
-            String transformDate = simpleDateFormat.format(ocCurrentDayRevenue.getDate());
+        List<NowDayRevenue> allDataByTypeId = firDSNowDayRevenueDao.getAllDataByTypeId(id);
+        for (NowDayRevenue nowDayRevenue : allDataByTypeId) {
+            money.add(nowDayRevenue.getMoney());
+            String transformDate = simpleDateFormat.format(nowDayRevenue.getDate());
             days.add(transformDate);
         }
         map.put("money", money);
@@ -124,11 +123,11 @@ public class OcCurrentDayRevenueServiceImpl implements OcCurrentDayRevenueServic
      **/
     public void addMoneyBYPolyline(Date date){
         float autoMoney = 0;
-        List<OcPolylineData> ocPolylineDataList = ocPolylineDataMapper.selectAllType();
+        List<OcPolylineData> ocPolylineDataList = secDSPolylineMapper.selectAllType();
         for (OcPolylineData polylineData:ocPolylineDataList) {
-            int count = ocCurrentDayRevenueDao.selectCountByDate(polylineData.getId(), date);
+            int count = firDSNowDayRevenueDao.selectCountByDate(polylineData.getId(), date);
             if (count == 0){
-                ocCurrentDayRevenueDao.insertMoney(autoMoney,polylineData.getId(),date);
+                firDSNowDayRevenueDao.insertMoney(autoMoney,polylineData.getId(),date);
             }
         }
     }
@@ -145,16 +144,16 @@ public class OcCurrentDayRevenueServiceImpl implements OcCurrentDayRevenueServic
         Map map = new HashMap();
         log.info("打印转换的时间"+date);
         //0 不存在新增    1 存在修改
-        int i = ocCurrentDayRevenueDao.selectCountByDate(polylineId,date);
+        int i = firDSNowDayRevenueDao.selectCountByDate(polylineId,date);
         if(i == 0){
-            ocCurrentDayRevenueDao.insertMoney(money,polylineId,date);
-            //通过时间 和折线类型id产找是否存在该money不存在添加0
+            firDSNowDayRevenueDao.insertMoney(money,polylineId,date);
+            //通过时间 和折线类型id产找是否存在该money不存在添加0 i
             addMoneyBYPolyline(date);
             map.put("Code", 200);
             map.put("Desc", "新增数据成功");
             return map;
         }else{
-            ocCurrentDayRevenueDao.updateMoney(money,polylineId,date);
+            firDSNowDayRevenueDao.updateMoney(money,polylineId,date);
             map.put("Code", 200);
             map.put("Desc", "修改数据成功");
             return map;

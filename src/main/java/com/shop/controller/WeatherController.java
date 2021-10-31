@@ -1,7 +1,7 @@
 package com.shop.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.shop.service.impl.UserServiceImpl;
+import com.shop.service.impl.TidDSUserServiceImpl;
 import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,8 +14,8 @@ import org.springframework.web.client.RestTemplate;
 
 @Controller
 @RequestMapping("/web/QueryWeather")
-public class QueryWeatherController {
-    private Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
+public class WeatherController {
+    private Logger log = LoggerFactory.getLogger(TidDSUserServiceImpl.class);
     @Autowired
     private RestTemplate restTemplate;
 

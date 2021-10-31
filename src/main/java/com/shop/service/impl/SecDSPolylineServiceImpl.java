@@ -1,10 +1,10 @@
 package com.shop.service.impl;
 
-import com.shop.entity.OcCurrentDayRevenue;
+import com.shop.entity.NowDayRevenue;
 import com.shop.entity.OcPolylineData;
-import com.shop.mapper.OcCurrentDayRevenueDao;
-import com.shop.mapper.OcPolylineDataMapper;
-import com.shop.service.OcPolylineService;
+import com.shop.mapper.FirDSNowDayRevenueDao;
+import com.shop.mapper.SecDSPolylineMapper;
+import com.shop.service.SecDSPolylineService;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,9 +18,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class OcPolylineServiceImpl implements OcPolylineService {
+public class SecDSPolylineServiceImpl implements SecDSPolylineService {
 
-    private Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
+    private Logger log = LoggerFactory.getLogger(TidDSUserServiceImpl.class);
 
 //    @Autowired
 //    DataSourceTransactionManager dataSourceTransactionManager;
@@ -29,10 +29,10 @@ public class OcPolylineServiceImpl implements OcPolylineService {
 //    private TransactionDefinition transactionDefinition;
 
     @Autowired
-    private OcPolylineDataMapper polylineDataMapper;
+    private SecDSPolylineMapper polylineDataMapper;
 
     @Autowired
-    private OcCurrentDayRevenueDao ocCurrentDayRevenueDao;
+    private FirDSNowDayRevenueDao firDSNowDayRevenueDao;
 
     @Override
     public Map getAllPolyline() {
@@ -43,9 +43,9 @@ public class OcPolylineServiceImpl implements OcPolylineService {
         List<String> days = new ArrayList<>();
         for (OcPolylineData o : ocPolylineDataList) {
             poleTypeNameList.add(o.getPolylineName());
-            List<OcCurrentDayRevenue> allDataByTypeId = ocCurrentDayRevenueDao.getAllDataByTypeId(o.getId());
-            for (OcCurrentDayRevenue ocCurrentDayRevenue : allDataByTypeId) {
-                String transformDate = simpleDateFormat.format(ocCurrentDayRevenue.getDate());
+            List<NowDayRevenue> allDataByTypeId = firDSNowDayRevenueDao.getAllDataByTypeId(o.getId());
+            for (NowDayRevenue nowDayRevenue : allDataByTypeId) {
+                String transformDate = simpleDateFormat.format(nowDayRevenue.getDate());
                 days.add(transformDate);
             }
         }
@@ -75,9 +75,9 @@ public class OcPolylineServiceImpl implements OcPolylineService {
             polylineDataMapper.insertPolyLineType(polylineName,polylineType);
             idByNameType = polylineDataMapper.getIdByNameType(polylineName);
             List<OcPolylineData> ocPolylineDataList = polylineDataMapper.selectAllType();
-            List<Date> allDate = ocCurrentDayRevenueDao.getAllDate();
+            List<Date> allDate = firDSNowDayRevenueDao.getAllDate();
             for (Date date:allDate) {
-                ocCurrentDayRevenueDao.insertMoney(money,idByNameType,date);
+                firDSNowDayRevenueDao.insertMoney(money,idByNameType,date);
             }
 //            dataSourceTransactionManager.commit(transactionStatus);
             map.put("polylineDataList",ocPolylineDataList);

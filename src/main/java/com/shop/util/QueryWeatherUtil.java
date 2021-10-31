@@ -1,15 +1,15 @@
 package com.shop.util;
 
 import com.alibaba.fastjson.JSONObject;
-import com.shop.service.impl.UserServiceImpl;
+import com.shop.service.impl.TidDSUserServiceImpl;
 import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-public class QueryWeather {
-    private Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
+public class QueryWeatherUtil {
+    private Logger log = LoggerFactory.getLogger(TidDSUserServiceImpl.class);
     private static String APPID = "48212483";
     private static String APPSECRET = "4nrJutXf";
 

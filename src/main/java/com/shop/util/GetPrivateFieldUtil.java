@@ -1,8 +1,8 @@
-package com.shop.config;
+package com.shop.util;
 
 import java.lang.reflect.Field;
 
-public class FunUtil {
+public class GetPrivateFieldUtil {
     public static Object getPrivateField(Object obj, String fieldName, Class classs) {
         try {
             Field field = classs.getDeclaredField(fieldName);

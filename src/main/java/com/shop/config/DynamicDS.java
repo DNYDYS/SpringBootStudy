@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
-public class DynamicDataSource extends AbstractRoutingDataSource {
+public class DynamicDS extends AbstractRoutingDataSource {
     private Logger logger = LoggerFactory.getLogger(getClass().getName());
     @Override
     protected Object determineCurrentLookupKey() {

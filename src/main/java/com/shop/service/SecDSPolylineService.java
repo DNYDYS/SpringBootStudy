@@ -2,7 +2,7 @@ package com.shop.service;
 
 import java.util.Map;
 
-public interface OcPolylineService {
+public interface SecDSPolylineService {
 
     Map getAllPolyline();
 
