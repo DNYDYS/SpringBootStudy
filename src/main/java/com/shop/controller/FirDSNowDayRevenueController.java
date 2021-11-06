@@ -12,11 +12,11 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * (OcCurrentDayRevenue)表控制层
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author makejava
  * @since 2021-08-23 16:20:50
  */
-@RestController
+@Controller
 @RequestMapping("/web/nowDayRevenue")
 @Api(value = "商品类型及销量相关的接口", tags = "第一数据源销量接口", description = "商品类型以及销量的相关操作")
 public class FirDSNowDayRevenueController {
@@ -55,7 +55,7 @@ public class FirDSNowDayRevenueController {
 
     @PostMapping("/insertOrUpdateRevenue")
     @ResponseBody
-    @ApiOperation(value = "新增销量",notes = "新增销量",produces = "appliaction/json")
+    @ApiOperation(value = "新增或修改销量",notes = "新增或修改销量",produces = "appliaction/json")
     public Map insertOrUpdateRevenue(float money,int type1, String date) throws ParseException {
         DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
         Date parse = format1.parse(date);

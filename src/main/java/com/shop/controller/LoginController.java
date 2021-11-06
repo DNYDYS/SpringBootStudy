@@ -8,10 +8,11 @@ import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
 
-@RestController
+@Controller
 @Api(value = "登录接口",tags = "登录接口", description = "登录接口")
 public class LoginController {
     private Logger log = LoggerFactory.getLogger(TidDSUserServiceImpl.class);
@@ -28,7 +29,7 @@ public class LoginController {
         return "login";
     }
 
-    @GetMapping(value = "/loginIn")
+    @PostMapping(value = "/loginIn")
     @ApiOperation(value = "登录接口",notes = "登录接口",produces = "application/json")
     public String login(String name,String password){
         User user = tidDSUserService.loginIn(name,password);
