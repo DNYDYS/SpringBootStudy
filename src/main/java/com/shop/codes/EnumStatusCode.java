@@ -4,33 +4,27 @@ public enum EnumStatusCode {
     SUCCESS(200,"成功"),
     FAILD(400,"失败");
 
-    private EnumStatusCode(int Code, String Desc) {
-        this.key = key;
-        this.name = name;
+    private int code;
+    private String desc;
+
+    EnumStatusCode(int code, String desc) {
+        this.code = code;
+        this.desc = desc;
     }
 
-    private String key;
+    public int getCode() {
+        return code;
+    }
 
-    private String name;
+    public String getDesc() {
+        return desc;
+    }
 
     @Override
-    public String toString(){
-        return key;
-    }
-
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public String toString() {
+        return "EnumStatusCode{" +
+            "code=" + code +
+            ", desc='" + desc + '\'' +
+            '}';
     }
 }

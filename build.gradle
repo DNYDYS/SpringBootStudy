@@ -32,6 +32,10 @@ dependencies {
     implementation group: 'org.jsoup', name: 'jsoup', version: '1.13.1'
     // https://mvnrepository.com/artifact/com.alibaba/fastjson
     implementation 'com.alibaba:fastjson:1.2.78'
+    //引入swagger2jar
+    implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+    implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+
 
 }
 
